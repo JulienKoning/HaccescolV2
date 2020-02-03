@@ -32,9 +32,9 @@ class Document
     private $image;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="documents")
      */
-    private $idType;
+    private $category;
 
     public function getId(): ?int
     {
@@ -77,14 +77,14 @@ class Document
         return $this;
     }
 
-    public function getIdType(): ?string
+    public function getCategory(): ?Category
     {
-        return $this->idType;
+        return $this->category;
     }
 
-    public function setIdType(string $idType): self
+    public function setCategory(?Category $category): self
     {
-        $this->idType = $idType;
+        $this->category = $category;
 
         return $this;
     }

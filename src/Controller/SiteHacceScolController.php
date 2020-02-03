@@ -7,6 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Document;
 use App\Repository\DocumentRepository;
+use Knp\Component\Pager\PaginatorInterface;
 
 class SiteHacceScolController extends AbstractController
 {
@@ -21,9 +22,11 @@ class SiteHacceScolController extends AbstractController
     /**
      * @Route("/site_hacce_scol/parcourir", name="site_index")
      */
-    public function index(DocumentRepository $repo)
+    public function index(DocumentRepository $repo, PaginatorInterface $paginator, Request $request)
     {
-        $documents = $repo->findAll();
+        $documents = $paginator->paginate($repo->findAllQuery('p'),
+            $request->query->getInt('page', 1),
+            20);
 
         return $this->render('site_hacce_scol/index.html.twig',[
             'documents' => $documents

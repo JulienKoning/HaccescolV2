@@ -70,7 +70,10 @@ class __TwigTemplate_0bdd427d537ee70f30ac1bbc45b3f934bcacc029462a92c02c268b54f43
         // line 5
         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["document"]) || array_key_exists("document", $context) ? $context["document"] : (function () { throw new RuntimeError('Variable "document" does not exist.', 5, $this->source); })()), "title", [], "any", false, false, false, 5), "html", null, true);
         echo "</h2>
-        <div class=\"metadata\">Crée le 10/01/2020</div>
+        <div class=\"metadata\">Catégorie du document : ";
+        // line 6
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["document"]) || array_key_exists("document", $context) ? $context["document"] : (function () { throw new RuntimeError('Variable "document" does not exist.', 6, $this->source); })()), "category", [], "any", false, false, false, 6), "name", [], "any", false, false, false, 6), "html", null, true);
+        echo "</div>
         <img src=\"";
         // line 7
         echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["document"]) || array_key_exists("document", $context) ? $context["document"] : (function () { throw new RuntimeError('Variable "document" does not exist.', 7, $this->source); })()), "image", [], "any", false, false, false, 7), "html", null, true);
@@ -106,7 +109,7 @@ class __TwigTemplate_0bdd427d537ee70f30ac1bbc45b3f934bcacc029462a92c02c268b54f43
 
     public function getDebugInfo()
     {
-        return array (  83 => 11,  76 => 7,  71 => 5,  68 => 4,  58 => 3,  35 => 1,);
+        return array (  86 => 11,  79 => 7,  75 => 6,  71 => 5,  68 => 4,  58 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -116,7 +119,7 @@ class __TwigTemplate_0bdd427d537ee70f30ac1bbc45b3f934bcacc029462a92c02c268b54f43
 {% block body %}
     <article>
         <h2>{{document.title}}</h2>
-        <div class=\"metadata\">Crée le 10/01/2020</div>
+        <div class=\"metadata\">Catégorie du document : {{document.category.name}}</div>
         <img src=\"{{document.image}}\" alt=\"\">
         <div class=\"info\">
             <p>

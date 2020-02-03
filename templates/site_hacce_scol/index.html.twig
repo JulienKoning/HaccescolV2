@@ -3,20 +3,27 @@
 {% block body %}
 <section class="images">
 
-    {% for document in documents %}
-    <article>
-        <h2>{{document.title}}</h2>
-        <div class="metadata">Crée le 10/01/2020</div>
-        <div class="content"><img src="{{document.image}}" alt="">
-            <br>
-            <br>
-            <a href="{{ path('site_show', {'id' : document.id }) }}" class="btn btn-primary">Voir détails</a>
-        </div>
-        <br>
-    </article>
-    <br>
+    <div class="row">
+        {% for document in documents %}
 
-    {% endfor %}
+            <div class="col-md-4">
+                <article>
+                    <h2>{{document.title}}</h2>
+                    <div class="metadata">Crée le 10/01/2020</div>
+                    <div class="content"><img src="{{document.image}}" alt="">
+                        <br>
+                        <br>
+                        <a href="{{ path('site_show', {'id' : document.id }) }}" class="btn btn-primary">Voir détails</a>
+                    </div>
+                    <br>
+                </article>
+                <br>
+            </div>
+        {% endfor %}
+        </div>
+        <div class="pagination">
+            {{ knp_pagination_render(documents) }}
+        </div>
 
 </section>
 {% endblock %}

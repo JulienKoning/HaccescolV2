@@ -67,40 +67,44 @@ class __TwigTemplate_5596099de6f53bfa046a7fe48c029367674d8a799135e07c7263a4e023c
         // line 4
         echo "<section class=\"images\">
 
-    ";
-        // line 6
+    <div class=\"row\">
+        ";
+        // line 7
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["documents"]) || array_key_exists("documents", $context) ? $context["documents"] : (function () { throw new RuntimeError('Variable "documents" does not exist.', 6, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["documents"]) || array_key_exists("documents", $context) ? $context["documents"] : (function () { throw new RuntimeError('Variable "documents" does not exist.', 7, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["document"]) {
-            // line 7
-            echo "    <article>
-        <h2>";
             // line 8
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["document"], "title", [], "any", false, false, false, 8), "html", null, true);
+            echo "
+            <div class=\"col-md-4\">
+                <article>
+                    <h2>";
+            // line 11
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["document"], "title", [], "any", false, false, false, 11), "html", null, true);
             echo "</h2>
-        <div class=\"metadata\">Crée le 10/01/2020</div>
-        <div class=\"content\"><img src=\"";
-            // line 10
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["document"], "image", [], "any", false, false, false, 10), "html", null, true);
-            echo "\" alt=\"\">
-            <br>
-            <br>
-            <a href=\"";
+                    <div class=\"metadata\">Crée le 10/01/2020</div>
+                    <div class=\"content\"><img src=\"";
             // line 13
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("site_show", ["id" => twig_get_attribute($this->env, $this->source, $context["document"], "id", [], "any", false, false, false, 13)]), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["document"], "image", [], "any", false, false, false, 13), "html", null, true);
+            echo "\" alt=\"\">
+                        <br>
+                        <br>
+                        <a href=\"";
+            // line 16
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("site_show", ["id" => twig_get_attribute($this->env, $this->source, $context["document"], "id", [], "any", false, false, false, 16)]), "html", null, true);
             echo "\" class=\"btn btn-primary\">Voir détails</a>
-        </div>
-        <br>
-    </article>
-    <br>
-
-    ";
+                    </div>
+                    <br>
+                </article>
+                <br>
+            </div>
+        ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['document'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 20
-        echo "
+        // line 23
+        echo "        </div>
+
 </section>
 ";
         
@@ -123,7 +127,7 @@ class __TwigTemplate_5596099de6f53bfa046a7fe48c029367674d8a799135e07c7263a4e023c
 
     public function getDebugInfo()
     {
-        return array (  103 => 20,  90 => 13,  84 => 10,  79 => 8,  76 => 7,  72 => 6,  68 => 4,  58 => 3,  35 => 1,);
+        return array (  106 => 23,  93 => 16,  87 => 13,  82 => 11,  77 => 8,  73 => 7,  68 => 4,  58 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -133,20 +137,24 @@ class __TwigTemplate_5596099de6f53bfa046a7fe48c029367674d8a799135e07c7263a4e023c
 {% block body %}
 <section class=\"images\">
 
-    {% for document in documents %}
-    <article>
-        <h2>{{document.title}}</h2>
-        <div class=\"metadata\">Crée le 10/01/2020</div>
-        <div class=\"content\"><img src=\"{{document.image}}\" alt=\"\">
-            <br>
-            <br>
-            <a href=\"{{ path('site_show', {'id' : document.id }) }}\" class=\"btn btn-primary\">Voir détails</a>
-        </div>
-        <br>
-    </article>
-    <br>
+    <div class=\"row\">
+        {% for document in documents %}
 
-    {% endfor %}
+            <div class=\"col-md-4\">
+                <article>
+                    <h2>{{document.title}}</h2>
+                    <div class=\"metadata\">Crée le 10/01/2020</div>
+                    <div class=\"content\"><img src=\"{{document.image}}\" alt=\"\">
+                        <br>
+                        <br>
+                        <a href=\"{{ path('site_show', {'id' : document.id }) }}\" class=\"btn btn-primary\">Voir détails</a>
+                    </div>
+                    <br>
+                </article>
+                <br>
+            </div>
+        {% endfor %}
+        </div>
 
 </section>
 {% endblock %}", "site_hacce_scol/index.html.twig", "D:\\Documents\\Projet2eAnnee\\HacceScol\\templates\\site_hacce_scol\\index.html.twig");

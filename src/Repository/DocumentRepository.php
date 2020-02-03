@@ -19,6 +19,16 @@ class DocumentRepository extends ServiceEntityRepository
         parent::__construct($registry, Document::class);
     }
 
+
+    /**
+     * @return Query
+     */
+
+    public function findAllQuery()
+    {
+        return $this->createQueryBuilder('p')->getQuery();
+    }
+
     // /**
     //  * @return Document[] Returns an array of Document objects
     //  */
