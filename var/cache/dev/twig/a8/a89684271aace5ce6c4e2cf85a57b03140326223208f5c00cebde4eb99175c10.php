@@ -66,13 +66,22 @@ class __TwigTemplate_0bdd427d537ee70f30ac1bbc45b3f934bcacc029462a92c02c268b54f43
 
         // line 4
         echo "    <article>
-        <h2>Titre de l'image</h2>
+        <h2>";
+        // line 5
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["document"]) || array_key_exists("document", $context) ? $context["document"] : (function () { throw new RuntimeError('Variable "document" does not exist.', 5, $this->source); })()), "title", [], "any", false, false, false, 5), "html", null, true);
+        echo "</h2>
         <div class=\"metadata\">Crée le 10/01/2020</div>
-        <img src=\"https://placehold.it/500x300\" alt=\"\">
+        <img src=\"";
+        // line 7
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["document"]) || array_key_exists("document", $context) ? $context["document"] : (function () { throw new RuntimeError('Variable "document" does not exist.', 7, $this->source); })()), "image", [], "any", false, false, false, 7), "html", null, true);
+        echo "\" alt=\"\">
         <div class=\"info\">
             <p>
                 <h3>Texte extrait de l'image</h3>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro tenetur odio nulla rem ab, eaque magni aut dolore? Expedita corrupti minus laudantium error ex necessitatibus, aspernatur molestiae maxime, modi commodi optio labore iusto quos distinctio repudiandae vel! Laboriosam nulla odio possimus, officia facilis, laborum ducimus totam quos, molestias impedit ipsam perspiciatis ex ullam sequi molestiae sed excepturi blanditiis. Vitae exercitationem aliquid eius suscipit quo necessitatibus, ut nulla facere. Magnam eligendi dolorem laudantium alias nulla voluptates molestiae explicabo ad! Dignissimos, obcaecati adipisci. Error, beatae reiciendis tenetur eaque obcaecati dignissimos consequuntur porro ad, quibusdam quos mollitia dolore. Sed explicabo corporis cupiditate maiores!
+                ";
+        // line 11
+        echo twig_get_attribute($this->env, $this->source, (isset($context["document"]) || array_key_exists("document", $context) ? $context["document"] : (function () { throw new RuntimeError('Variable "document" does not exist.', 11, $this->source); })()), "content", [], "any", false, false, false, 11);
+        echo "
             </p>
         </div>
     </article>
@@ -97,7 +106,7 @@ class __TwigTemplate_0bdd427d537ee70f30ac1bbc45b3f934bcacc029462a92c02c268b54f43
 
     public function getDebugInfo()
     {
-        return array (  68 => 4,  58 => 3,  35 => 1,);
+        return array (  83 => 11,  76 => 7,  71 => 5,  68 => 4,  58 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -106,13 +115,13 @@ class __TwigTemplate_0bdd427d537ee70f30ac1bbc45b3f934bcacc029462a92c02c268b54f43
 
 {% block body %}
     <article>
-        <h2>Titre de l'image</h2>
+        <h2>{{document.title}}</h2>
         <div class=\"metadata\">Crée le 10/01/2020</div>
-        <img src=\"https://placehold.it/500x300\" alt=\"\">
+        <img src=\"{{document.image}}\" alt=\"\">
         <div class=\"info\">
             <p>
                 <h3>Texte extrait de l'image</h3>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro tenetur odio nulla rem ab, eaque magni aut dolore? Expedita corrupti minus laudantium error ex necessitatibus, aspernatur molestiae maxime, modi commodi optio labore iusto quos distinctio repudiandae vel! Laboriosam nulla odio possimus, officia facilis, laborum ducimus totam quos, molestias impedit ipsam perspiciatis ex ullam sequi molestiae sed excepturi blanditiis. Vitae exercitationem aliquid eius suscipit quo necessitatibus, ut nulla facere. Magnam eligendi dolorem laudantium alias nulla voluptates molestiae explicabo ad! Dignissimos, obcaecati adipisci. Error, beatae reiciendis tenetur eaque obcaecati dignissimos consequuntur porro ad, quibusdam quos mollitia dolore. Sed explicabo corporis cupiditate maiores!
+                {{document.content | raw }}
             </p>
         </div>
     </article>

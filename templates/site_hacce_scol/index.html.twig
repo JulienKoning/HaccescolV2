@@ -2,27 +2,21 @@
 
 {% block body %}
 <section class="images">
+
+    {% for document in documents %}
     <article>
-        <h2>Titre de l'image</h2>
+        <h2>{{document.title}}</h2>
         <div class="metadata">Crée le 10/01/2020</div>
-        <div class="content"><img src="https://placehold.it/350x150" alt="">
+        <div class="content"><img src="{{document.image}}" alt="">
             <br>
-            <a href="{{ path('site_show') }}" class="btn btn-primary">Voir détails</a>
+            <br>
+            <a href="{{ path('site_show', {'id' : document.id }) }}" class="btn btn-primary">Voir détails</a>
         </div>
-        <h2>Titre de l'image</h2>
-        <div class="metadata">Crée le 10/01/2020</div>
-        <div class="content">
-            <img src="https://placehold.it/350x150" alt="">
-            <br>
-            <a href="{{ path('site_show') }}" class="btn btn-primary">Voir détails</a>
-        </div>
-        <h2>Titre de l'image</h2>
-        <div class="metadata">Crée le 10/01/2020</div>
-        <div class="content">
-            <img src="https://placehold.it/350x150" alt="">
-            <br>
-            <a href="{{ path('site_show') }}" class="btn btn-primary">Voir détails</a>
-            </div>
+        <br>
     </article>
+    <br>
+
+    {% endfor %}
+
 </section>
 {% endblock %}

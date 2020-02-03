@@ -60,7 +60,10 @@ class __TwigTemplate_ed4d18adb40137f4ef68ea9f0ce84b55e8e147f866beda6c7725f88bbf4
         echo "    </head>
     <body>
         <nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">
-            <a class=\"navbar-brand\" href=\"#\">HacceScol</a>
+            <a class=\"navbar-brand\" href=\"";
+        // line 11
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("home");
+        echo "\">HacceScol</a>
             <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarColor02\" aria-controls=\"navbarColor02\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
               <span class=\"navbar-toggler-icon\"></span>
             </button>
@@ -74,16 +77,19 @@ class __TwigTemplate_ed4d18adb40137f4ef68ea9f0ce84b55e8e147f866beda6c7725f88bbf4
         echo "\">Home</a>
                 </li>
                 <li class=\"nav-item\">
-                  <a class=\"nav-link\" href=\"#\">Rechercher</a>
+                  <a class=\"nav-link\" href=\"";
+        // line 22
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("site_index");
+        echo "\">Parcourir</a>
                 </li>
                 <li class=\"nav-item\">
-                  <a class=\"nav-link\" href=\"#\">Ajouter</a>
+                  <a class=\"nav-link\" href=\"#\">Rechercher</a>
                 </li>
                 <li class=\"nav-item\">
                   <a class=\"nav-link\" href=\"";
         // line 28
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("site_index");
-        echo "\">Parcourir</a>
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("site_ajouter");
+        echo "\">Ajouter</a>
                 </li>
               </ul>
             </div>
@@ -120,7 +126,7 @@ class __TwigTemplate_ed4d18adb40137f4ef68ea9f0ce84b55e8e147f866beda6c7725f88bbf4
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
 
-        echo "Welcome!";
+        echo "HacceScol";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
@@ -195,7 +201,7 @@ class __TwigTemplate_ed4d18adb40137f4ef68ea9f0ce84b55e8e147f866beda6c7725f88bbf4
 
     public function getDebugInfo()
     {
-        return array (  169 => 37,  151 => 34,  133 => 7,  114 => 5,  102 => 38,  100 => 37,  96 => 35,  94 => 34,  85 => 28,  73 => 19,  60 => 8,  58 => 7,  53 => 5,  47 => 1,);
+        return array (  175 => 37,  157 => 34,  139 => 7,  120 => 5,  108 => 38,  106 => 37,  102 => 35,  100 => 34,  91 => 28,  82 => 22,  76 => 19,  65 => 11,  60 => 8,  58 => 7,  53 => 5,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -204,13 +210,13 @@ class __TwigTemplate_ed4d18adb40137f4ef68ea9f0ce84b55e8e147f866beda6c7725f88bbf4
 <html>
     <head>
         <meta charset=\"UTF-8\">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}HacceScol{% endblock %}</title>
         <link rel=\"stylesheet\" href=\"https://bootswatch.com/4/lux/bootstrap.min.css\">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
         <nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">
-            <a class=\"navbar-brand\" href=\"#\">HacceScol</a>
+            <a class=\"navbar-brand\" href=\"{{ path('home') }}\">HacceScol</a>
             <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarColor02\" aria-controls=\"navbarColor02\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
               <span class=\"navbar-toggler-icon\"></span>
             </button>
@@ -221,13 +227,13 @@ class __TwigTemplate_ed4d18adb40137f4ef68ea9f0ce84b55e8e147f866beda6c7725f88bbf4
                   <a class=\"nav-link\" href=\"{{ path('home') }}\">Home</a>
                 </li>
                 <li class=\"nav-item\">
+                  <a class=\"nav-link\" href=\"{{ path('site_index')}}\">Parcourir</a>
+                </li>
+                <li class=\"nav-item\">
                   <a class=\"nav-link\" href=\"#\">Rechercher</a>
                 </li>
                 <li class=\"nav-item\">
-                  <a class=\"nav-link\" href=\"#\">Ajouter</a>
-                </li>
-                <li class=\"nav-item\">
-                  <a class=\"nav-link\" href=\"{{ path('site_index')}}\">Parcourir</a>
+                  <a class=\"nav-link\" href=\"{{ path('site_ajouter') }}\">Ajouter</a>
                 </li>
               </ul>
             </div>

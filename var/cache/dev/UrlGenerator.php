@@ -6,5 +6,6 @@ return [
     '_preview_error' => [['code', '_format'], ['_controller' => 'error_controller::preview', '_format' => 'html'], ['code' => '\\d+'], [['variable', '.', '[^/]++', '_format'], ['variable', '/', '\\d+', 'code'], ['text', '/_error']], [], []],
     'home' => [[], ['_controller' => 'App\\Controller\\SiteHacceScolController::home'], [], [['text', '/']], [], []],
     'site_index' => [[], ['_controller' => 'App\\Controller\\SiteHacceScolController::index'], [], [['text', '/site_hacce_scol/parcourir']], [], []],
-    'site_show' => [[], ['_controller' => 'App\\Controller\\SiteHacceScolController::show'], [], [['text', '/site_hacce_scol/1']], [], []],
+    'site_ajouter' => [[], ['_controller' => 'App\\Controller\\SiteHacceScolController::ajouter'], [], [['text', '/site_hacce_scol/ajouter']], [], []],
+    'site_show' => [['id'], ['_controller' => 'App\\Controller\\SiteHacceScolController::show'], [], [['variable', '/', '[^/]++', 'id'], ['text', '/site_hacce_scol']], [], []],
 ];

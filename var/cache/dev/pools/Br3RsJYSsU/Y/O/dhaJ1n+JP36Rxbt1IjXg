@@ -8,7 +8,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
     [
         'Symfony\\Component\\Routing\\Annotation\\Route' => [
             'path' => [
-                '/site_hacce_scol/1',
+                '/site_hacce_scol/{id}',
             ],
             'name' => [
                 'site_show',

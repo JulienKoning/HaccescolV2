@@ -21,6 +21,7 @@
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="MakerBundle">Symfony\Bundle\MakerBundle\MakerBundle</parameter>
       <parameter key="WebServerBundle">Symfony\Bundle\WebServerBundle\WebServerBundle</parameter>
+      <parameter key="DoctrineFixturesBundle">Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -70,6 +71,10 @@
       <parameter key="WebServerBundle" type="collection">
         <parameter key="path">D:\Documents\Projet2eAnnee\HacceScol\vendor\symfony\web-server-bundle</parameter>
         <parameter key="namespace">Symfony\Bundle\WebServerBundle</parameter>
+      </parameter>
+      <parameter key="DoctrineFixturesBundle" type="collection">
+        <parameter key="path">D:\Documents\Projet2eAnnee\HacceScol\vendor\doctrine\doctrine-fixtures-bundle</parameter>
+        <parameter key="namespace">Doctrine\Bundle\FixturesBundle</parameter>
       </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
@@ -215,6 +220,12 @@
       <call method="setContainer">
         <argument type="service" id=".service_locator.vdmMuyE.App\Controller\SiteHacceScolController"/>
       </call>
+    </service>
+    <service id="App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true">
+      <tag name="doctrine.fixture.orm"/>
+    </service>
+    <service id="App\DataFixtures\DocumentFixtures" class="App\DataFixtures\DocumentFixtures" autowire="true" autoconfigure="true">
+      <tag name="doctrine.fixture.orm"/>
     </service>
     <service id="App\Repository\DocumentRepository" class="App\Repository\DocumentRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
@@ -1545,6 +1556,8 @@
           <argument>D:\Documents\Projet2eAnnee\HacceScol\src/Resources/MakerBundle/translations</argument>
           <argument>D:\Documents\Projet2eAnnee\HacceScol\vendor\symfony\web-server-bundle/translations</argument>
           <argument>D:\Documents\Projet2eAnnee\HacceScol\src/Resources/WebServerBundle/translations</argument>
+          <argument>D:\Documents\Projet2eAnnee\HacceScol\vendor\doctrine\doctrine-fixtures-bundle/translations</argument>
+          <argument>D:\Documents\Projet2eAnnee\HacceScol\src/Resources/DoctrineFixturesBundle/translations</argument>
           <argument>D:\Documents\Projet2eAnnee\HacceScol/translations</argument>
           <argument>D:\Documents\Projet2eAnnee\HacceScol\src/Resources/translations</argument>
         </argument>
@@ -1577,6 +1590,8 @@
             <argument>D:\Documents\Projet2eAnnee\HacceScol\src/Resources/MakerBundle/translations</argument>
             <argument>D:\Documents\Projet2eAnnee\HacceScol\vendor\symfony\web-server-bundle/translations</argument>
             <argument>D:\Documents\Projet2eAnnee\HacceScol\src/Resources/WebServerBundle/translations</argument>
+            <argument>D:\Documents\Projet2eAnnee\HacceScol\vendor\doctrine\doctrine-fixtures-bundle/translations</argument>
+            <argument>D:\Documents\Projet2eAnnee\HacceScol\src/Resources/DoctrineFixturesBundle/translations</argument>
             <argument>translations</argument>
             <argument>D:\Documents\Projet2eAnnee\HacceScol\src/Resources/translations</argument>
           </argument>
@@ -1984,14 +1999,6 @@
       </call>
       <call method="addListener">
         <argument>kernel.request</argument>
-        <argument type="collection">
-          <argument type="service" id="debug.debug_handlers_listener"/>
-          <argument>configure</argument>
-        </argument>
-        <argument>2048</argument>
-      </call>
-      <call method="addListener">
-        <argument>console.command</argument>
         <argument type="collection">
           <argument type="service" id="debug.debug_handlers_listener"/>
           <argument>configure</argument>
@@ -3584,9 +3591,36 @@
         <argument>server:status</argument>
       </call>
     </service>
+    <service id="doctrine.fixtures_load_command" class="Doctrine\Bundle\FixturesBundle\Command\LoadDataFixturesDoctrineCommand">
+      <tag name="console.command" command="doctrine:fixtures:load"/>
+      <argument type="service" id="doctrine.fixtures.loader"/>
+      <argument type="service" id="doctrine"/>
+      <call method="setName">
+        <argument>doctrine:fixtures:load</argument>
+      </call>
+    </service>
+    <service id="doctrine.fixtures.loader" class="Doctrine\Bundle\FixturesBundle\Loader\SymfonyFixturesLoader" public="false">
+      <argument type="service" id="service_container"/>
+      <call method="addFixtures">
+        <argument type="collection">
+          <argument type="collection">
+            <argument key="fixture" type="service" id="App\DataFixtures\AppFixtures"/>
+            <argument key="groups" type="collection"/>
+          </argument>
+          <argument type="collection">
+            <argument key="fixture" type="service" id="App\DataFixtures\DocumentFixtures"/>
+            <argument key="groups" type="collection"/>
+          </argument>
+        </argument>
+      </call>
+    </service>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\SiteHacceScolController" class="App\Controller\SiteHacceScolController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\SiteHacceScolController" class="App\Controller\SiteHacceScolController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\SiteHacceScolController" class="App\Controller\SiteHacceScolController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\DocumentFixtures" class="App\DataFixtures\DocumentFixtures" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\DataFixtures\DocumentFixtures" class="App\DataFixtures\DocumentFixtures" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\DocumentRepository" class="App\Repository\DocumentRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\DocumentRepository" class="App\Repository\DocumentRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".service_locator.CmORmuK" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
@@ -3772,9 +3806,26 @@
         <argument>make:migration</argument>
       </call>
     </service>
-    <service id=".service_locator.I3K77mT" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.28.Qa_g" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
-      <argument type="collection"/>
+      <argument type="collection">
+        <argument key="repo" type="service" id="App\Repository\DocumentRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.3CWM4Lz" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="document" type="service" id=".errored..service_locator.3CWM4Lz.App\Entity\Document"/>
+      </argument>
+    </service>
+    <service id=".service_locator.NmLEyTg" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="App\Controller\SiteHacceScolController::index" type="service" id=".service_locator.28.Qa_g"/>
+        <argument key="App\Controller\SiteHacceScolController::show" type="service" id=".service_locator.3CWM4Lz"/>
+        <argument key="App\Controller\SiteHacceScolController:index" type="service" id=".service_locator.28.Qa_g"/>
+        <argument key="App\Controller\SiteHacceScolController:show" type="service" id=".service_locator.3CWM4Lz"/>
+      </argument>
     </service>
     <service id=".service_locator._tpP3ur" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
@@ -4048,15 +4099,16 @@
     <service id="debug.argument_resolver.request.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestValueResolver" public="false"/>
     <service id="debug.argument_resolver.session.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\SessionValueResolver" public="false"/>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.I3K77mT"/>
+      <argument type="service" id=".service_locator.NmLEyTg"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver" public="false">
-      <argument type="service" id=".service_locator.I3K77mT"/>
+      <argument type="service" id=".service_locator.NmLEyTg"/>
     </service>
+    <service id=".errored..service_locator.3CWM4Lz.App\Entity\Document" class="App\Entity\Document"/>
     <service id="console.command_loader" class="Symfony\Component\Console\CommandLoader\ContainerCommandLoader" public="true">
-      <argument type="service" id=".service_locator.owDJwZ_"/>
+      <argument type="service" id=".service_locator.D8kHInI"/>
       <argument type="collection">
         <argument key="about">console.command.about</argument>
         <argument key="assets:install">console.command.assets_install</argument>
@@ -4122,6 +4174,7 @@
         <argument key="server:start">web_server.command.server_start</argument>
         <argument key="server:stop">web_server.command.server_stop</argument>
         <argument key="server:status">web_server.command.server_status</argument>
+        <argument key="doctrine:fixtures:load">doctrine.fixtures_load_command</argument>
         <argument key="make:auth">maker.auto_command.make_auth</argument>
         <argument key="make:command">maker.auto_command.make_command</argument>
         <argument key="make:controller">maker.auto_command.make_controller</argument>
@@ -4142,7 +4195,7 @@
         <argument key="make:migration">maker.auto_command.make_migration</argument>
       </argument>
     </service>
-    <service id=".service_locator.owDJwZ_" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.D8kHInI" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="console.command.about" type="service" id="console.command.about"/>
@@ -4182,6 +4235,7 @@
         <argument key="doctrine.database_drop_command" type="service" id="doctrine.database_drop_command"/>
         <argument key="doctrine.database_import_command" type="service" id="doctrine.database_import_command"/>
         <argument key="doctrine.ensure_production_settings_command" type="service" id="doctrine.ensure_production_settings_command"/>
+        <argument key="doctrine.fixtures_load_command" type="service" id="doctrine.fixtures_load_command"/>
         <argument key="doctrine.mapping_convert_command" type="service" id="doctrine.mapping_convert_command"/>
         <argument key="doctrine.mapping_import_command" type="service" id="doctrine.mapping_import_command"/>
         <argument key="doctrine.mapping_info_command" type="service" id="doctrine.mapping_info_command"/>
@@ -4344,7 +4398,7 @@
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger" public="false"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.CmORmuK" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.I3K77mT"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.NmLEyTg"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
     <service id="Psr\Log\LoggerInterface $consoleLogger" alias="monolog.logger.console"/>
