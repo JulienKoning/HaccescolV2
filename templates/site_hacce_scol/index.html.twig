@@ -1,29 +1,38 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<section class="images">
-
-    <div class="row">
-        {% for document in documents %}
-
-            <div class="col-md-4">
-                <article>
-                    <h2>{{document.title}}</h2>
-                    <div class="metadata">Crée le 10/01/2020</div>
-                    <div class="content"><img src="{{document.image}}" alt="">
+<div class="jumbotron">
+    <div class="container">
+        {{form_start(form)}}
+        {{form_end(form)}}
+    </div>
+</div>
+<div class="container">
+    
+    <section class="images">
+    
+        <div class="row">
+            {% for document in documents %}
+    
+                <div class="col-md-4">
+                    <article>
+                        <h2>{{document.title}}</h2>
+                        <div class="metadata">Crée le 10/01/2020</div>
+                        <div class="content"><img src="{{document.image}}" alt="">
+                            <br>
+                            <br>
+                            <a href="{{ path('site_show', {'id' : document.id }) }}" class="btn btn-primary">Voir détails</a>
+                        </div>
                         <br>
-                        <br>
-                        <a href="{{ path('site_show', {'id' : document.id }) }}" class="btn btn-primary">Voir détails</a>
-                    </div>
+                    </article>
                     <br>
-                </article>
-                <br>
+                </div>
+            {% endfor %}
             </div>
-        {% endfor %}
-        </div>
-        <div class="pagination">
-            {{ knp_pagination_render(documents) }}
-        </div>
-
-</section>
+            <div class="pagination">
+                {{ knp_pagination_render(documents) }}
+            </div>
+    
+    </section>
+</div>
 {% endblock %}

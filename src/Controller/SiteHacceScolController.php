@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Document;
+use App\Entity\DocumentSearch;
+use App\Form\DocumentSearchType;
 use App\Repository\DocumentRepository;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -24,12 +26,16 @@ class SiteHacceScolController extends AbstractController
      */
     public function index(DocumentRepository $repo, PaginatorInterface $paginator, Request $request)
     {
+        $search = new DocumentSearch();
+        $form = $this->createForm(DocumentSearchType::class, $search);
+        $form->handleRequest($request);
         $documents = $paginator->paginate($repo->findAllQuery('p'),
             $request->query->getInt('page', 1),
             20);
 
         return $this->render('site_hacce_scol/index.html.twig',[
-            'documents' => $documents
+            'documents' => $documents,
+            'form' => $form->createView()
         ]);
     }
     
