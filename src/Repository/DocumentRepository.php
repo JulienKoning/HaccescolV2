@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Document;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use App\Entity\DocumentSearch;
 
 /**
  * @method Document|null find($id, $lockMode = null, $lockVersion = null)
@@ -24,9 +25,16 @@ class DocumentRepository extends ServiceEntityRepository
      * @return Query
      */
 
-    public function findAllQuery()
+    public function findAllQuery(DocumentSearch $search)
     {
-        return $this->createQueryBuilder('p')->getQuery();
+        $query = $this->createQueryBuilder('d');
+        if ($search->getDocumentType() && $search->getDocumentType()!= -1) 
+        {
+            $query = $query->andWhere('d.category = :typeDoc');
+            $query->setParameter('typeDoc', $search->getDocumentType());
+        }
+        
+        return $query->getQuery();
     }
 
     // /**

@@ -29,9 +29,9 @@ class SiteHacceScolController extends AbstractController
         $search = new DocumentSearch();
         $form = $this->createForm(DocumentSearchType::class, $search);
         $form->handleRequest($request);
-        $documents = $paginator->paginate($repo->findAllQuery('p'),
+        $documents = $paginator->paginate($repo->findAllQuery($search),
             $request->query->getInt('page', 1),
-            20);
+            21);
 
         return $this->render('site_hacce_scol/index.html.twig',[
             'documents' => $documents,

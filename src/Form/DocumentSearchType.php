@@ -17,16 +17,19 @@ class DocumentSearchType extends AbstractType
             ->add('documentType', ChoiceType::class,[
                 'label' => 'Type du Document : ',
                 'choices' => [
+                    'Sélectionner un type de document'=>'-1',
                     'Plan'=>'7',
                     'Texte'=>'8',
                     'Inconnu'=>'9'
-                ]
+                ],
+                
             ] )
             ->add('searchedText', TextType::class, [
                 'label'=>'Recherche par mot-clés : ',
                 'attr'=>[
-                    'placeholder'=>'Mot-clés recherchés'
-                ]
+                    'placeholder'=>'Mot-clés recherchés',
+                    'value'=>' ',
+                ],
             ])
         ;
     }
@@ -38,5 +41,10 @@ class DocumentSearchType extends AbstractType
             'method'=>'get',
             'csrf_protection'=>false,
         ]);
+    }
+
+    public function getBlockPrefix()
+    {
+        return '';
     }
 }

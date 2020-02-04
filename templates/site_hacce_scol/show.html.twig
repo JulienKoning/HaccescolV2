@@ -1,15 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <article>
-        <h2>{{document.title}}</h2>
-        <div class="metadata">Catégorie du document : {{document.category.name}}</div>
-        <img src="{{document.image}}" alt="">
-        <div class="info">
-            <p>
-                <h3>Texte extrait de l'image</h3>
-                {{document.content | raw }}
-            </p>
-        </div>
-    </article>
+    <div class="container">
+        <article>
+            <h2>{{document.title}}</h2>
+            <div class="metadata">Catégorie du document : {{document.category.name}}</div>
+            <img src="{{document.image}}" alt="">
+            <div class="info">
+                <p>
+                    <h3>Texte extrait de l'image</h3>
+                    {{document.content | raw }}
+                </p>
+            </div>
+        </article>
+    </div>
 {% endblock %}
