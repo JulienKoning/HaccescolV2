@@ -25,10 +25,10 @@ class DocumentSearchType extends AbstractType
                 
             ] )
             ->add('searchedText', TextType::class, [
+                'required'=>false,
                 'label'=>'Recherche par mot-clés : ',
                 'attr'=>[
                     'placeholder'=>'Mot-clés recherchés',
-                    'value'=>' ',
                 ],
             ])
         ;

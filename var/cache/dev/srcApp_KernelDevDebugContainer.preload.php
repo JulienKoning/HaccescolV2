@@ -6,7 +6,7 @@
 use Symfony\Component\DependencyInjection\Dumper\Preloader;
 
 require dirname(__DIR__, 3).'\\vendor/autoload.php';
-require __DIR__.'/ContainerXHLzVek/srcApp_KernelDevDebugContainer.php';
+require __DIR__.'/ContainerXN1v7oO/srcApp_KernelDevDebugContainer.php';
 
 $classes = [];
 $classes[] = 'App\Kernel';
@@ -66,6 +66,7 @@ $classes[] = 'Symfony\Bundle\WebProfilerBundle\Twig\WebProfilerExtension';
 $classes[] = 'Symfony\Component\VarDumper\Dumper\HtmlDumper';
 $classes[] = 'Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension';
 $classes[] = 'Knp\Bundle\PaginatorBundle\Helper\Processor';
+$classes[] = 'Vich\UploaderBundle\Twig\Extension\UploaderExtension';
 $classes[] = 'Symfony\Bridge\Twig\AppVariable';
 $classes[] = 'Twig\RuntimeLoader\ContainerRuntimeLoader';
 $classes[] = 'Twig\Extra\TwigExtraBundle\MissingExtensionSuggestor';
@@ -84,6 +85,17 @@ $classes[] = 'Sensio\Bundle\FrameworkExtraBundle\Request\ArgumentNameConverter';
 $classes[] = 'Doctrine\Bundle\DoctrineBundle\Registry';
 $classes[] = 'Symfony\Component\VarDumper\Cloner\VarCloner';
 $classes[] = 'Knp\Bundle\PaginatorBundle\Subscriber\SlidingPaginationSubscriber';
+$classes[] = 'Vich\UploaderBundle\Storage\FileSystemStorage';
+$classes[] = 'Vich\UploaderBundle\Metadata\MetadataReader';
+$classes[] = 'Metadata\MetadataFactory';
+$classes[] = 'Metadata\Driver\DriverChain';
+$classes[] = 'Vich\UploaderBundle\Metadata\Driver\XmlDriver';
+$classes[] = 'Metadata\Driver\FileLocator';
+$classes[] = 'Vich\UploaderBundle\Metadata\Driver\AnnotationDriver';
+$classes[] = 'Vich\UploaderBundle\Metadata\Driver\YamlDriver';
+$classes[] = 'Metadata\Cache\FileCache';
+$classes[] = 'Vich\UploaderBundle\Mapping\PropertyMappingFactory';
+$classes[] = 'Vich\UploaderBundle\Templating\Helper\UploaderHelper';
 $classes[] = 'Monolog\Handler\NullHandler';
 $classes[] = 'Symfony\Bundle\FrameworkBundle\Translation\Translator';
 $classes[] = 'Symfony\Component\Translation\Formatter\MessageFormatter';
