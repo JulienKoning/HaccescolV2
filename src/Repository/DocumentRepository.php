@@ -28,10 +28,21 @@ class DocumentRepository extends ServiceEntityRepository
     public function findAllQuery(DocumentSearch $search)
     {
         $query = $this->createQueryBuilder('d');
-        if ($search->getDocumentType() && $search->getDocumentType()!= -1) 
+        if ($search->getDocumentType())
         {
             $query = $query->andWhere('d.category = :typeDoc');
             $query->setParameter('typeDoc', $search->getDocumentType());
+        }
+
+        if ($search->getSearchedText())
+        {
+            $text = $search->getSearchedText();
+            $text_frags = explode(' ', $text);
+            foreach ($text_frags as $mot)
+            {
+                $query->andWhere('d.title LIKE :searchTerm OR d.content LIKE :searchTerm')
+                    ->setParameter('searchTerm', '%'.$mot.'%');
+            }
         }
         
         return $query->getQuery();

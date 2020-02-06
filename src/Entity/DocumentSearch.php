@@ -7,7 +7,6 @@ class DocumentSearch{
 
     /**
      * @var int|null
-     * @Assert\ Type("int")
      */
 
      private $documentType;

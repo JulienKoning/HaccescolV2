@@ -2,7 +2,10 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\DocumentSearch;
+use App\Repository\CategoryRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,15 +17,13 @@ class DocumentSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('documentType', ChoiceType::class,[
-                'label' => 'Type du Document : ',
-                'choices' => [
-                    'Sélectionner un type de document'=>'-1',
+            ->add('documentType', ChoiceType::class, [
+                'choices'=>[
+                    'Sélectionner un type de document'=>null,
                     'Plan'=>'7',
                     'Texte'=>'8',
-                    'Inconnu'=>'9'
+                    'Inconnu'=>'9',
                 ],
-                
             ] )
             ->add('searchedText', TextType::class, [
                 'required'=>false,

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,10 +25,10 @@ class SiteHacceScolController extends AbstractController
     /**
      * @Route("/site_hacce_scol/parcourir", name="site_index")
      */
-    public function index(DocumentRepository $repo, PaginatorInterface $paginator, Request $request)
+    public function index(DocumentRepository $repo, CategoryRepository $categoryRepository, PaginatorInterface $paginator, Request $request)
     {
         $search = new DocumentSearch();
-        $form = $this->createForm(DocumentSearchType::class, $search);
+        $form = $this->createForm(DocumentSearchType::class, $search, );
         $form->handleRequest($request);
         $documents = $paginator->paginate($repo->findAllQuery($search),
             $request->query->getInt('page', 1),
