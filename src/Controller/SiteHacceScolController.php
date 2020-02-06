@@ -28,7 +28,9 @@ class SiteHacceScolController extends AbstractController
     public function index(DocumentRepository $repo, CategoryRepository $categoryRepository, PaginatorInterface $paginator, Request $request)
     {
         $search = new DocumentSearch();
-        $form = $this->createForm(DocumentSearchType::class, $search, );
+        $form = $this->createForm(DocumentSearchType::class, $search, [
+            'categories'=>$categoryRepository->findAll()
+        ]);
         $form->handleRequest($request);
         $documents = $paginator->paginate($repo->findAllQuery($search),
             $request->query->getInt('page', 1),

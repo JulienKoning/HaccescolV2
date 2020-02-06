@@ -16,14 +16,15 @@ class DocumentSearchType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $tab = ['Sélectionner un document'=>null];
+        foreach($options['categories'] as $category)
+        {
+            $tab[$category->getName()] = $category->getId();
+        }
         $builder
             ->add('documentType', ChoiceType::class, [
-                'choices'=>[
-                    'Sélectionner un type de document'=>null,
-                    'Plan'=>'7',
-                    'Texte'=>'8',
-                    'Inconnu'=>'9',
-                ],
+                'choices'=>$tab,
+
             ] )
             ->add('searchedText', TextType::class, [
                 'required'=>false,
@@ -41,6 +42,7 @@ class DocumentSearchType extends AbstractType
             'data_class' => DocumentSearch::class,
             'method'=>'get',
             'csrf_protection'=>false,
+            'categories' => [],
         ]);
     }
 

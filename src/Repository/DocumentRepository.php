@@ -40,7 +40,7 @@ class DocumentRepository extends ServiceEntityRepository
             $text_frags = explode(' ', $text);
             foreach ($text_frags as $mot)
             {
-                $query->andWhere('d.title LIKE :searchTerm OR d.content LIKE :searchTerm')
+                $query->andWhere('(d.title LIKE :searchTerm OR d.content LIKE :searchTerm)')
                     ->setParameter('searchTerm', '%'.$mot.'%');
             }
         }
