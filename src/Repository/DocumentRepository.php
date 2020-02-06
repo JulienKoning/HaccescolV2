@@ -38,11 +38,18 @@ class DocumentRepository extends ServiceEntityRepository
         {
             $text = $search->getSearchedText();
             $text_frags = explode(' ', $text);
+            #$fin = count($text_frags);
+            $expr = '';
             foreach ($text_frags as $mot)
             {
-                $query->andWhere('(d.title LIKE :searchTerm OR d.content LIKE :searchTerm)')
-                    ->setParameter('searchTerm', '%'.$mot.'%');
+                $expr = $expr.'d.title LIKE \'%'.$mot.'%\' OR d.content LIKE \'%'.$mot.'%\'';
+                if ($mot != end($text_frags))
+                {
+                    $expr = $expr.' OR ';
+                }
+
             }
+            $query->andWhere($expr);
         }
         
         return $query->getQuery();
