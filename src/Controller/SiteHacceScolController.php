@@ -41,14 +41,7 @@ class SiteHacceScolController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-    
-    /**
-     * @Route("/site_hacce_scol/ajouter", name="site_ajouter")
-     */
 
-    public function ajouter(Request $req){
-        return $this->render('site_hacce_scol/ajouter.html.twig');
-    }
 
     /**
      * @Route("/site_hacce_scol/{id}", name="site_show" )

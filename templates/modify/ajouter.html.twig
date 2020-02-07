@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>Ajouter un document</h1>
+        {{ form_start(form) }}
+        <div class="row align-items-end">
+            {{ form_row(form.title) }}
+        </div>
+        <div class="row">
+            <p>Si vous insérez un ensemble de documents, veuillez n'insérez que des documents de même catégorie (Plan, Tetxte, ...)</p>
+        </div>
+        <div class="row align-items-end">
+            {{ form_row(form.imageFile) }}
+        </div>
+        <div class="row align-items-end">
+            {{ form_row(form.category) }}
+        </div>
+        <div class="row">
+            <p>Si aucune catégorie ne correspond, saisissez le nom de la nouvelle catégorie.</p>
+        </div>
+        <div class="row align-items-end">
+            <label for="newCategory">Nouvelle catégorie : </label>
+        </div>
+        <div class="row align-items-end">
+            <input type="text" name="newCategory" placeholder="Saisissez le nom de votre catégorie" class="form-control col-5">
+        </div>
+        <br>
+        <div class="row align-items-end">
+            <button type="submit" class="btn btn-primary">Ajouter</button>
+        </div>
+    </div>
+
+{% endblock %}

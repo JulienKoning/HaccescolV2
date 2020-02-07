@@ -8,9 +8,11 @@
 return [
     false, // $matchHost
     [ // $staticRoutes
+        '/modify' => [[['_route' => 'modify', '_controller' => 'App\\Controller\\ModifyController::index'], null, null, null, false, false, null]],
+        '/modify/add' => [[['_route' => 'ajouter', '_controller' => 'App\\Controller\\ModifyController::ajouter'], null, null, null, false, false, null]],
+        '/modify/editer' => [[['_route' => 'editer', '_controller' => 'App\\Controller\\ModifyController::edit'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'home', '_controller' => 'App\\Controller\\SiteHacceScolController::home'], null, null, null, false, false, null]],
         '/site_hacce_scol/parcourir' => [[['_route' => 'site_index', '_controller' => 'App\\Controller\\SiteHacceScolController::index'], null, null, null, false, false, null]],
-        '/site_hacce_scol/ajouter' => [[['_route' => 'site_ajouter', '_controller' => 'App\\Controller\\SiteHacceScolController::ajouter'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'
