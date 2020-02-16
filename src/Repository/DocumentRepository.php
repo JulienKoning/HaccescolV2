@@ -6,6 +6,7 @@ use App\Entity\Document;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use App\Entity\DocumentSearch;
+use Doctrine\ORM\Query;
 
 /**
  * @method Document|null find($id, $lockMode = null, $lockVersion = null)
@@ -36,16 +37,21 @@ class DocumentRepository extends ServiceEntityRepository
 
         if ($search->getSearchedText())
         {
+            $andOr = ' OR ';
+            if ($search->isExactSearch())
+            {
+                $andOr = ' AND ';
+            }
             $text = $search->getSearchedText();
             $text_frags = explode(' ', $text);
             #$fin = count($text_frags);
             $expr = '';
             foreach ($text_frags as $mot)
             {
-                $expr = $expr.'d.title LIKE \'%'.$mot.'%\' OR d.content LIKE \'%'.$mot.'%\'';
+                $expr = $expr.'(d.title LIKE \'%'.$mot.'%\' OR d.content LIKE \'%'.$mot.'%\')';
                 if ($mot != end($text_frags))
                 {
-                    $expr = $expr.' OR ';
+                    $expr = $expr.$andOr;
                 }
 
             }

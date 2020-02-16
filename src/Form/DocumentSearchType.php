@@ -2,11 +2,9 @@
 
 namespace App\Form;
 
-use App\Entity\Category;
 use App\Entity\DocumentSearch;
-use App\Repository\CategoryRepository;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -24,6 +22,7 @@ class DocumentSearchType extends AbstractType
         $builder
             ->add('documentType', ChoiceType::class, [
                 'choices'=>$tab,
+                'label' => 'Type de Document : ',
 
             ] )
             ->add('searchedText', TextType::class, [
@@ -32,6 +31,11 @@ class DocumentSearchType extends AbstractType
                 'attr'=>[
                     'placeholder'=>'Mot-clés recherchés',
                 ],
+            ])
+            ->add('exactSearch', CheckboxType::class, [
+                'required' => false,
+                'label' => 'Recherche exacte',
+
             ])
         ;
     }

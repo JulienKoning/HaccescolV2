@@ -12,6 +12,9 @@
                 {{form_row(form.searchedText)}}
             </div>
             <div class="col">
+                {{form_row(form.exactSearch)}}
+            </div>
+            <div class="col">
                 <div class="form-group">
                     <button class="btn btn-primary">Rechercher</button>
                 </div>
@@ -30,7 +33,7 @@
                 <div class="col-md-4">
                     <article>
                         <h2>{{document.title}}</h2>
-                        <div class="metadata">Crée le 10/01/2020</div>
+                        <div class="metadata">(Ref : {{ document.id }})</div>
                         <div class="content"><img src="{{document.image}}" alt="">
                             <br>
                             <br>

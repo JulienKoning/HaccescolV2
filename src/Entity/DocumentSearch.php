@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Entity;
-use Symfony\Component\Validator\Constraints as Assert;
 
 class DocumentSearch{
 
@@ -17,6 +16,28 @@ class DocumentSearch{
       */
 
      private $searchedText;
+
+    /**
+     * @var boolean|null
+     */
+
+    private $exactSearch;
+
+    /**
+     * @return bool
+     */
+    public function isExactSearch(): ?bool
+    {
+        return $this->exactSearch;
+    }
+
+    /**
+     * @param bool $exactSearch
+     */
+    public function setExactSearch(bool $exactSearch): void
+    {
+        $this->exactSearch = $exactSearch;
+    }
 
      /**
       * @return int|null

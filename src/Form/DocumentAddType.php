@@ -14,6 +14,7 @@ class DocumentAddType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
         $tab = ['Sélectionner un type de document'=>null];
         foreach($options['categories'] as $category)
         {
@@ -24,14 +25,12 @@ class DocumentAddType extends AbstractType
                 'label'=> 'Titre du document : ',
                 'attr' => [
                     'placeholder' => 'Titre',
-                    'class'=> 'col-5',
                 ]
             ])
             ->add('imageFile', FileType::class, [
                 'label' => 'Document(s) : ',
                 'attr' => [
                     'placeholder' => 'Sélectionnez un document',
-                    'class' => 'col-5',
                 ]
             ])
             ->add('category', ChoiceType::class, [

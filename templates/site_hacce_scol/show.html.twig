@@ -4,7 +4,10 @@
     <div class="container">
         <article>
             <h2>{{document.title}}</h2>
-            <div class="metadata">Catégorie du document : {{document.category.name}}</div>
+            <div class="metadata">
+                (Ref : {{ document.id }}) <br>
+                Catégorie du document : {{document.category.name}}
+            </div>
             <img src="{{document.image}}" alt="">
             <div class="info">
                 <p>

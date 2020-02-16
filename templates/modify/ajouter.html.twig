@@ -3,12 +3,13 @@
 {% block body %}
     <div class="container">
         <h1>Ajouter un document</h1>
+        <br>
         {{ form_start(form) }}
         <div class="row align-items-end">
             {{ form_row(form.title) }}
         </div>
         <div class="row">
-            <p>Si vous insérez un ensemble de documents, veuillez n'insérez que des documents de même catégorie (Plan, Tetxte, ...)</p>
+            <p>Si vous insérez un ensemble de documents, veuillez n'insérez que des documents de même catégorie (Plan, Texte, ...)</p>
         </div>
         <div class="row align-items-end">
             {{ form_row(form.imageFile) }}
