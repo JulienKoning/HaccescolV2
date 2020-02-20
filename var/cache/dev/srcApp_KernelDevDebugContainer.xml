@@ -231,8 +231,8 @@
         <parameter key="uri_prefix">/images/documents</parameter>
         <parameter key="upload_destination">D:\Documents\Projet2eAnnee\HacceScol/public/images/documents</parameter>
         <parameter key="namer" type="collection">
-          <parameter key="service">null</parameter>
-          <parameter key="options">null</parameter>
+          <parameter key="service">Vich\UploaderBundle\Naming\UniqidNamer.document_image</parameter>
+          <parameter key="options" type="collection"/>
         </parameter>
         <parameter key="directory_namer" type="collection">
           <parameter key="service">null</parameter>
@@ -3879,6 +3879,7 @@
       <tag name="twig.extension"/>
       <argument type="service" id="knp_paginator.helper.processor"/>
     </service>
+    <service id="Vich\UploaderBundle\Naming\UniqidNamer.document_image" class="Vich\UploaderBundle\Naming\UniqidNamer" public="true"/>
     <service id="vich_uploader.adapter.mongodb" class="Vich\UploaderBundle\Adapter\ODM\MongoDB\MongoDBAdapter" public="false"/>
     <service id="vich_uploader.adapter.orm" class="Vich\UploaderBundle\Adapter\ORM\DoctrineORMAdapter" public="false"/>
     <service id="vich_uploader.adapter.phpcr" class="Vich\UploaderBundle\Adapter\PHPCR\PHPCRAdapter" public="false"/>

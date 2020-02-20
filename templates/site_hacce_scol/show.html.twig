@@ -8,10 +8,14 @@
                 (Ref : {{ document.id }}) <br>
                 Catégorie du document : {{document.category.name}}
             </div>
-            <img src="{{document.image}}" alt="">
+            {%  if document.image matches '%http%' %}
+                <img src="{{document.image}}" alt="">
+            {%  else %}
+                <img src="{{ vich_uploader_asset(document, 'imageFile') }}" alt="" style="width: 100%; height: auto;">
+            {% endif %}
             <div class="info">
+                <h3>Texte extrait de l'image</h3>
                 <p>
-                    <h3>Texte extrait de l'image</h3>
                     {{document.content | raw }}
                 </p>
             </div>

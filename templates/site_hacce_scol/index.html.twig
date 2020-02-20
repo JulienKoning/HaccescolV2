@@ -34,7 +34,12 @@
                     <article>
                         <h2>{{document.title}}</h2>
                         <div class="metadata">(Ref : {{ document.id }})</div>
-                        <div class="content"><img src="{{document.image}}" alt="">
+                        <div class="content">
+                            {%  if document.image matches '%http%' %}
+                                <img src="{{document.image}}" alt="">
+                            {%  else %}
+                                <img src="{{ vich_uploader_asset(document, 'imageFile') }}" alt="" style="width: 100%; height: auto;">
+                            {% endif %}
                             <br>
                             <br>
                             <a href="{{ path('site_show', {'id' : document.id }) }}" class="btn btn-primary">Voir détails</a>

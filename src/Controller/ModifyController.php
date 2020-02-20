@@ -5,11 +5,14 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Entity\Document;
 use App\Form\DocumentAddType;
+use App\Kernel;
 use App\Repository\CategoryRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use thiagoalessio\TesseractOCR\TesseractOCR;
 
 class ModifyController extends AbstractController
 {
@@ -34,16 +37,17 @@ class ModifyController extends AbstractController
             'categories'=>$categoryRepository->findAll()
         ]);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid())
+        if ($form->isSubmitted())
         {
-            if ($_POST['newCategory'])
-            {
-                $category = new Category();
-                $category->setName($_POST['newCategory']);
 
-                #$manager->persist($category);
-
-            }
+            //$text = (new TesseractOCR($this->getParameter('kernel.root_dir') . '\..\public\images\documents'.$doc->getImage()))
+            $text = (new TesseractOCR(($form['imageFile']->getData())))
+                ->lang('fra')
+                ->run();
+            $doc->setContent($text);
+            $this->getDoctrine()->getManager()->persist($doc);
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('site_show', ['id' => $doc->getId()]);
         }
 
         return $this->render('modify/ajouter.html.twig', [
